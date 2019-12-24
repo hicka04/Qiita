@@ -81,13 +81,10 @@
 		B8149EC123A37FEA00EF5E58 /* Qiita */ = {
 			isa = PBXGroup;
 			children = (
-				B8149EC223A37FEA00EF5E58 /* AppDelegate.swift */,
-				B8149EC423A37FEA00EF5E58 /* SceneDelegate.swift */,
+				B8766F8F23B1FBE3008BCAE3 /* Application */,
+				B8766F8E23B1FBD4008BCAE3 /* Modules */,
+				B8766F9023B1FBF7008BCAE3 /* Resources */,
 				B8149EC623A37FEA00EF5E58 /* ContentView.swift */,
-				B8149EC823A37FEC00EF5E58 /* Assets.xcassets */,
-				B8149ECD23A37FEC00EF5E58 /* LaunchScreen.storyboard */,
-				B8149ED023A37FEC00EF5E58 /* Info.plist */,
-				B8149ECA23A37FEC00EF5E58 /* Preview Content */,
 			);
 			path = Qiita;
 			sourceTree = "<group>";
@@ -107,6 +104,33 @@
 				B8149EDB23A37FEC00EF5E58 /* Info.plist */,
 			);
 			path = QiitaTests;
+			sourceTree = "<group>";
+		};
+		B8766F8E23B1FBD4008BCAE3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		B8766F8F23B1FBE3008BCAE3 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				B8149EC223A37FEA00EF5E58 /* AppDelegate.swift */,
+				B8149EC423A37FEA00EF5E58 /* SceneDelegate.swift */,
+				B8149ED023A37FEC00EF5E58 /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B8766F9023B1FBF7008BCAE3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B8149EC823A37FEC00EF5E58 /* Assets.xcassets */,
+				B8149ECD23A37FEC00EF5E58 /* LaunchScreen.storyboard */,
+				B8149ECA23A37FEC00EF5E58 /* Preview Content */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,10 +395,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Qiita/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Qiita/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 8RYHZQ93KG;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Qiita/Info.plist;
+				INFOPLIST_FILE = Qiita/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,10 +415,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Qiita/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Qiita/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 8RYHZQ93KG;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Qiita/Info.plist;
+				INFOPLIST_FILE = Qiita/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
