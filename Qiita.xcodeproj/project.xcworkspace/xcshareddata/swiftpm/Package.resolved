@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "QiitaAPIClient",
+        "repositoryURL": "https://github.com/hicka04/QiitaAPIClient.git",
+        "state": {
+          "branch": null,
+          "revision": "86b1aefe312ccba5c5d99168cc73b6f896f71228",
+          "version": "0.0.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
