@@ -17,14 +17,15 @@ final class ArticleSearchActionCreator {
     
     private var cancellables: Set<AnyCancellable> = []
     private let onAppearSubject = PassthroughSubject<Void, Never>()
+    private let searchTextSubject = PassthroughSubject<String, Never>()
     
     init(qiitaAPIClient: QiitaAPIRequestable = QiitaAPIClient()) {
         self.qiitaAPIClient = qiitaAPIClient
         
-        onAppearSubject
-            .flatMap { [qiitaAPIClient] _ in
+        searchTextSubject
+            .flatMap { [qiitaAPIClient] text in
                 qiitaAPIClient
-                    .send(QiitaAPI.SearchArticles())
+                    .send(QiitaAPI.SearchArticles(query: text))
                     .receive(on: DispatchQueue.main)
                     .catch { [weak self] error -> Empty<[Article], Never> in
                         self?.dispatcher.dispatch(.catchError(error))
@@ -40,5 +41,9 @@ extension ArticleSearchActionCreator {
     
     func onAppear() {
         onAppearSubject.send()
+    }
+    
+    func searchBarSearchButtonClicked(text: String) {
+        searchTextSubject.send(text)
     }
 }

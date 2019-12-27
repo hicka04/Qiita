@@ -11,19 +11,25 @@ import SwiftUI
 struct ArticleSearchView: View {
     
     @ObservedObject private var store: ArticleSearchStore = .shared
+    @State private var searchText: String = ""
     
     private let actionCreator = ArticleSearchActionCreator()
     
     var body: some View {
         NavigationView {
-            List(store.articles) { article in
-                Text("\(article.title)")
+            VStack {
+                SearchBar(placeholder: "Enter search keywords", text: $searchText) { text in
+                    self.actionCreator.searchBarSearchButtonClicked(text: text)
+                }
+                List(store.articles) { article in
+                    Text("\(article.title)")
+                }
             }
             .alert(isPresented: $store.isShownSearchErrorAlert) { () -> Alert in
                 Alert(title: Text("検索エラー"),
                       message: Text("エラーが発生しました。\n時間をおいてから再度検索してください。"))
             }
-            .navigationBarTitle("Search", displayMode: .inline)
+            .navigationBarTitle("Search")
         }
         .onAppear {
             self.actionCreator.onAppear()
