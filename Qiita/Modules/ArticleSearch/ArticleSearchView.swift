@@ -29,20 +29,31 @@ struct ArticleSearchView: View {
                 }
             }
         ) {
-            List(store.articles) { article in
-                Text(article.title)
-            }.alert(isPresented: $store.isShownSearchErrorAlert, content: { () -> Alert in
-                Alert(title: Text("Error"))
-            })
-            .navigationBarTitle("Search")
+            ArticleSearchResultsView()
+                .navigationBarTitle("Search")
         }.onAppear {
             self.actionCreator.onAppear()
         }
     }
 }
 
-struct SearchArticlesView_Previews: PreviewProvider {
+private struct ArticleSearchResultsView: View {
+    
+    @ObservedObject private var store: ArticleSearchStore = .shared
+    
+    var body: some View {
+        List(store.articles) { article in
+            Text(article.title)
+        }.alert(isPresented: $store.isShownSearchErrorAlert, content: { () -> Alert in
+            Alert(title: Text("Error"))
+        })
+    }
+}
+
+#if DEBUG
+struct ArticleSearchView_Previews: PreviewProvider {
     static var previews: some View {
         ArticleSearchView()
     }
 }
+#endif
