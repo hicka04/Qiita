@@ -24,6 +24,8 @@ struct ArticleSearchView: View {
                 switch event {
                 case .searchButtonClicked(let text):
                     self.actionCreator.searchBarSearchButtonClicked(text: text)
+                case .cancelButtonClicked:
+                    self.actionCreator.searchBarCancelButtonClicked()
                 default:
                     break
                 }
@@ -31,7 +33,7 @@ struct ArticleSearchView: View {
         ) {
             ZStack {
                 ArticleSearchHistoryView()
-                if store.articles.count > 0 {
+                if store.shownSearchResultView {
                     ArticleSearchResultsView()
                 }
             }

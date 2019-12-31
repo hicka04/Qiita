@@ -19,6 +19,7 @@ final class ArticleSearchActionCreator {
     private var cancellables: Set<AnyCancellable> = []
     private let onAppearSubject = PassthroughSubject<Void, Never>()
     private let searchTextSubject = PassthroughSubject<String, Never>()
+    private let searchCancelSubject = PassthroughSubject<Void, Never>()
     
     init(qiitaAPIClient: QiitaAPIRequestable = QiitaAPIClient(),
          articleSearchHistoryRepository: ArticleSearchHistoryRepository = ArticleSearchHistoryDataStore()) {
@@ -30,6 +31,11 @@ final class ArticleSearchActionCreator {
                 articleSearchHistoryRepository.histories()
             }.sink { histories in
                 self.dispatcher.dispatch(.updateHistories(histories))
+            }.store(in: &cancellables)
+        
+        searchTextSubject
+            .sink { text in
+                self.dispatcher.dispatch(.updateSearchKeyword(text))
             }.store(in: &cancellables)
         
         searchTextSubject
@@ -52,6 +58,11 @@ final class ArticleSearchActionCreator {
             }.sink { [weak self] articles in
                 self?.dispatcher.dispatch(.updateArticles(articles))
             }.store(in: &cancellables)
+        
+        searchCancelSubject
+            .sink { [weak self] _ in
+                self?.dispatcher.dispatch(.searchCanceled)
+            }.store(in: &cancellables)
     }
 }
 
@@ -63,5 +74,9 @@ extension ArticleSearchActionCreator {
     
     func searchBarSearchButtonClicked(text: String) {
         searchTextSubject.send(text)
+    }
+    
+    func searchBarCancelButtonClicked() {
+        searchCancelSubject.send()
     }
 }
