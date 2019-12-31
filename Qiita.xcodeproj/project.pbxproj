@@ -14,6 +14,8 @@
 		B8149ECF23A37FEC00EF5E58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8149ECD23A37FEC00EF5E58 /* LaunchScreen.storyboard */; };
 		B8149EDA23A37FEC00EF5E58 /* QiitaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8149ED923A37FEC00EF5E58 /* QiitaTests.swift */; };
 		B84A750E23B5E76400C60127 /* NavigationSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A750D23B5E76400C60127 /* NavigationSearchBar.swift */; };
+		B84A751323B6364D00C60127 /* ArticleSearchHistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A751223B6364D00C60127 /* ArticleSearchHistoryRepository.swift */; };
+		B84A751523B8535700C60127 /* ArticleSearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84A751423B8535700C60127 /* ArticleSearchHistory.swift */; };
 		B8766F8D23B1F8C5008BCAE3 /* QiitaAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = B8766F8C23B1F8C5008BCAE3 /* QiitaAPIClient */; };
 		B8766F9323B1FDA7008BCAE3 /* ArticleSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8766F9223B1FDA7008BCAE3 /* ArticleSearchView.swift */; };
 		B8766F9523B1FEC9008BCAE3 /* ArticleSearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8766F9423B1FEC9008BCAE3 /* ArticleSearchStore.swift */; };
@@ -45,6 +47,8 @@
 		B8149ED923A37FEC00EF5E58 /* QiitaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaTests.swift; sourceTree = "<group>"; };
 		B8149EDB23A37FEC00EF5E58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B84A750D23B5E76400C60127 /* NavigationSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSearchBar.swift; sourceTree = "<group>"; };
+		B84A751223B6364D00C60127 /* ArticleSearchHistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchHistoryRepository.swift; sourceTree = "<group>"; };
+		B84A751423B8535700C60127 /* ArticleSearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchHistory.swift; sourceTree = "<group>"; };
 		B8766F9223B1FDA7008BCAE3 /* ArticleSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchView.swift; sourceTree = "<group>"; };
 		B8766F9423B1FEC9008BCAE3 /* ArticleSearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchStore.swift; sourceTree = "<group>"; };
 		B8766F9B23B238B8008BCAE3 /* ArticleSearchDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchDispatcher.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				B8766F8F23B1FBE3008BCAE3 /* Application */,
 				B8766F8E23B1FBD4008BCAE3 /* Modules */,
 				B8E078F523B5A5380012A8F8 /* CustomViews */,
+				B84A751023B6361100C60127 /* Data */,
 				B8766F9023B1FBF7008BCAE3 /* Resources */,
 			);
 			path = Qiita;
@@ -116,6 +121,23 @@
 				B8149EDB23A37FEC00EF5E58 /* Info.plist */,
 			);
 			path = QiitaTests;
+			sourceTree = "<group>";
+		};
+		B84A751023B6361100C60127 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B84A751123B6362200C60127 /* ArticleSearchHistory */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		B84A751123B6362200C60127 /* ArticleSearchHistory */ = {
+			isa = PBXGroup;
+			children = (
+				B84A751223B6364D00C60127 /* ArticleSearchHistoryRepository.swift */,
+				B84A751423B8535700C60127 /* ArticleSearchHistory.swift */,
+			);
+			path = ArticleSearchHistory;
 			sourceTree = "<group>";
 		};
 		B8766F8E23B1FBD4008BCAE3 /* Modules */ = {
@@ -275,6 +297,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8766FA023B23B71008BCAE3 /* ArticleSearchActionCreator.swift in Sources */,
+				B84A751323B6364D00C60127 /* ArticleSearchHistoryRepository.swift in Sources */,
+				B84A751523B8535700C60127 /* ArticleSearchHistory.swift in Sources */,
 				B8149EC323A37FEA00EF5E58 /* AppDelegate.swift in Sources */,
 				B8149EC523A37FEA00EF5E58 /* SceneDelegate.swift in Sources */,
 				B8766F9523B1FEC9008BCAE3 /* ArticleSearchStore.swift in Sources */,

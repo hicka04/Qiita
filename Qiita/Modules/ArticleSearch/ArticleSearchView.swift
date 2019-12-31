@@ -29,7 +29,12 @@ struct ArticleSearchView: View {
                 }
             }
         ) {
-            ArticleSearchResultsView()
+            ZStack {
+                ArticleSearchHistoryView()
+                if store.articles.count > 0 {
+                    ArticleSearchResultsView()
+                }
+            }
                 .navigationBarTitle("Search")
         }.onAppear {
             self.actionCreator.onAppear()
@@ -44,9 +49,20 @@ private struct ArticleSearchResultsView: View {
     var body: some View {
         List(store.articles) { article in
             Text(article.title)
-        }.alert(isPresented: $store.isShownSearchErrorAlert, content: { () -> Alert in
+        }.alert(isPresented: $store.shownSearchErrorAlert, content: { () -> Alert in
             Alert(title: Text("Error"))
         })
+    }
+}
+
+private struct ArticleSearchHistoryView: View {
+    
+    @ObservedObject private var store: ArticleSearchStore = .shared
+    
+    var body: some View {
+        List(store.histories, id: \.keyword) { history in
+            Text(history.keyword)
+        }
     }
 }
 

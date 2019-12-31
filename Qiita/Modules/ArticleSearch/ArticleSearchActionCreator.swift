@@ -14,13 +14,31 @@ final class ArticleSearchActionCreator {
     
     private let dispatcher: ArticleSearchDispatcher = .shared
     private let qiitaAPIClient: QiitaAPIRequestable
+    private let articleSearchHistoryRepository: ArticleSearchHistoryRepository
     
     private var cancellables: Set<AnyCancellable> = []
     private let onAppearSubject = PassthroughSubject<Void, Never>()
     private let searchTextSubject = PassthroughSubject<String, Never>()
     
-    init(qiitaAPIClient: QiitaAPIRequestable = QiitaAPIClient()) {
+    init(qiitaAPIClient: QiitaAPIRequestable = QiitaAPIClient(),
+         articleSearchHistoryRepository: ArticleSearchHistoryRepository = ArticleSearchHistoryDataStore()) {
         self.qiitaAPIClient = qiitaAPIClient
+        self.articleSearchHistoryRepository = articleSearchHistoryRepository
+        
+        onAppearSubject
+            .map { [articleSearchHistoryRepository] in
+                articleSearchHistoryRepository.histories()
+            }.sink { histories in
+                self.dispatcher.dispatch(.updateHistories(histories))
+            }.store(in: &cancellables)
+        
+        searchTextSubject
+            .map { text in
+                articleSearchHistoryRepository.save(keyword: text)
+                return articleSearchHistoryRepository.histories()
+            }.sink { histories in
+                self.dispatcher.dispatch(.updateHistories(histories))
+            }.store(in: &cancellables)
         
         searchTextSubject
             .flatMap { [qiitaAPIClient] text in

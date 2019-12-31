@@ -14,8 +14,9 @@ final class ArticleSearchStore: ObservableObject {
     
     static let shared = ArticleSearchStore()
     
+    @Published private(set) var histories: [ArticleSearchHistory] = []
     @Published private(set) var articles: [Article] = []
-    @Published var isShownSearchErrorAlert = false
+    @Published var shownSearchErrorAlert = false
     
     var cancellables: Set<AnyCancellable> = []
     
@@ -24,10 +25,12 @@ final class ArticleSearchStore: ObservableObject {
             guard let self = self else { return }
             
             switch action {
+            case .updateHistories(let histories):
+                self.histories = histories
             case .updateArticles(let articles):
                 self.articles = articles
             case .catchError:
-                self.isShownSearchErrorAlert = true
+                self.shownSearchErrorAlert = true
             }
         }
     }
