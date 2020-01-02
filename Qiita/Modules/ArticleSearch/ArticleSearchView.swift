@@ -61,9 +61,21 @@ private struct ArticleSearchHistoryView: View {
     
     @ObservedObject private var store: ArticleSearchStore = .shared
     
+    private let actionCreator = ArticleSearchActionCreator()
+    
     var body: some View {
-        List(store.histories, id: \.keyword) { history in
-            Text(history.keyword)
+        List {
+            Text("History")
+                .font(.headline)
+                .fontWeight(.bold)
+            ForEach(store.histories, id: \.keyword) { history in
+                Button(action: {
+                    self.actionCreator.didSelectSearchHistoryCell(history: history)
+                }) {
+                    Text(history.keyword)
+                        .foregroundColor(Color.blue)
+                }
+            }
         }
     }
 }

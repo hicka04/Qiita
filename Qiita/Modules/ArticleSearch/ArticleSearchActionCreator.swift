@@ -79,4 +79,8 @@ extension ArticleSearchActionCreator {
     func searchBarCancelButtonClicked() {
         searchCancelSubject.send()
     }
+    
+    func didSelectSearchHistoryCell(history: ArticleSearchHistory) {
+        searchTextSubject.send(history.keyword)
+    }
 }
