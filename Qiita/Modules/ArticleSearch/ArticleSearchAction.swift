@@ -11,8 +11,6 @@ import QiitaAPIClient
 
 enum ArticleSearchAction {
     
-    case updateSearchKeyword(_ keyword: String)
-    case searchCanceled
     case updateHistories(_ histories: [ArticleSearchHistory])
     case updateArticles(_ articles: [Article])
     case catchError(_ error: QiitaClientError)

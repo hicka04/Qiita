@@ -11,33 +11,37 @@ import SwiftUI
 struct ArticleSearchView: View {
     
     @ObservedObject private var store: ArticleSearchStore = .shared
-    @State private var searchText = ""
-    @State private var showsCancelButton = false
+    @State private var keyword = ""
+    @State private var shownResultView = false
+    @State private var hiddenNavigationBar = false
     
     private let actionCreator = ArticleSearchActionCreator()
     
     var body: some View {
-        NavigationSearchBar(
-            placeholder: "Enter search keywords",
-            text: $searchText,
-            eventHandler: { event in
-                switch event {
-                case .searchButtonClicked(let text):
-                    self.actionCreator.searchBarSearchButtonClicked(text: text)
-                case .cancelButtonClicked:
-                    self.actionCreator.searchBarCancelButtonClicked()
-                default:
-                    break
+        NavigationView {
+            VStack {
+                SearchBar(placeholder: "Enter search keywords", text: $keyword)
+                    .onEditing {
+                        self.hiddenNavigationBar = true
+                    }.onSearch { keyword in
+                        self.shownResultView = true
+                        self.actionCreator.onSearch(keyword: keyword)
+                    }.onCancel {
+                        self.shownResultView = false
+                        self.hiddenNavigationBar = false
+                        self.actionCreator.onSearchCancel()
+                    }
+                ZStack {
+                    ArticleSearchHistoryView(keyword: $keyword,
+                                             shownResultView: $shownResultView,
+                                             hiddenNavigationBar: $hiddenNavigationBar)
+                    if shownResultView {
+                        ArticleSearchResultsView()
+                    }
                 }
             }
-        ) {
-            ZStack {
-                ArticleSearchHistoryView()
-                if store.shownSearchResultView {
-                    ArticleSearchResultsView()
-                }
-            }
-                .navigationBarTitle("Search")
+            .navigationBarTitle("Search")
+            .navigationBarHidden(hiddenNavigationBar)
         }.onAppear {
             self.actionCreator.onAppear()
         }
@@ -51,15 +55,18 @@ private struct ArticleSearchResultsView: View {
     var body: some View {
         List(store.articles) { article in
             Text(article.title)
-        }.alert(isPresented: $store.shownSearchErrorAlert, content: { () -> Alert in
+        }.alert(isPresented: $store.shownSearchErrorAlert) {
             Alert(title: Text("Error"))
-        })
+        }
     }
 }
 
 private struct ArticleSearchHistoryView: View {
     
     @ObservedObject private var store: ArticleSearchStore = .shared
+    @Binding var keyword: String
+    @Binding var shownResultView: Bool
+    @Binding var hiddenNavigationBar: Bool
     
     private let actionCreator = ArticleSearchActionCreator()
     
@@ -70,7 +77,10 @@ private struct ArticleSearchHistoryView: View {
                 .fontWeight(.bold)
             ForEach(store.histories, id: \.keyword) { history in
                 Button(action: {
-                    self.actionCreator.didSelectSearchHistoryCell(history: history)
+                    self.keyword = history.keyword
+                    self.shownResultView = true
+                    self.hiddenNavigationBar = true
+                    self.actionCreator.onSelectSearchHistoryCell(history: history)
                 }) {
                     Text(history.keyword)
                         .foregroundColor(Color.blue)

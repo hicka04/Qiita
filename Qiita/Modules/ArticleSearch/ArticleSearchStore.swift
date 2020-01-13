@@ -14,11 +14,9 @@ final class ArticleSearchStore: ObservableObject {
     
     static let shared = ArticleSearchStore()
     
-    @Published var keyword: String = ""
     @Published private(set) var histories: [ArticleSearchHistory] = []
     @Published private(set) var articles: [Article] = []
     @Published var shownSearchErrorAlert = false
-    @Published var shownSearchResultView = false
     
     var cancellables: Set<AnyCancellable> = []
     
@@ -27,12 +25,6 @@ final class ArticleSearchStore: ObservableObject {
             guard let self = self else { return }
             
             switch action {
-            case .updateSearchKeyword(let keyword):
-                self.keyword = keyword
-                self.shownSearchResultView = true
-            case .searchCanceled:
-                self.articles = []
-                self.shownSearchResultView = false
             case .updateHistories(let histories):
                 self.histories = histories
             case .updateArticles(let articles):

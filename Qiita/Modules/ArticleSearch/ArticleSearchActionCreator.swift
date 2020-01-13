@@ -18,7 +18,7 @@ final class ArticleSearchActionCreator {
     
     private var cancellables: Set<AnyCancellable> = []
     private let onAppearSubject = PassthroughSubject<Void, Never>()
-    private let searchTextSubject = PassthroughSubject<String, Never>()
+    private let searchKeywordSubject = PassthroughSubject<String, Never>()
     private let searchCancelSubject = PassthroughSubject<Void, Never>()
     
     init(qiitaAPIClient: QiitaAPIRequestable = QiitaAPIClient(),
@@ -33,20 +33,15 @@ final class ArticleSearchActionCreator {
                 self.dispatcher.dispatch(.updateHistories(histories))
             }.store(in: &cancellables)
         
-        searchTextSubject
-            .sink { text in
-                self.dispatcher.dispatch(.updateSearchKeyword(text))
-            }.store(in: &cancellables)
-        
-        searchTextSubject
-            .map { text in
-                articleSearchHistoryRepository.save(keyword: text)
+        searchKeywordSubject
+            .map { keyword in
+                articleSearchHistoryRepository.save(keyword: keyword)
                 return articleSearchHistoryRepository.histories()
             }.sink { histories in
                 self.dispatcher.dispatch(.updateHistories(histories))
             }.store(in: &cancellables)
         
-        searchTextSubject
+        searchKeywordSubject
             .flatMap { [qiitaAPIClient] text in
                 qiitaAPIClient
                     .send(QiitaAPI.SearchArticles(query: text))
@@ -61,7 +56,7 @@ final class ArticleSearchActionCreator {
         
         searchCancelSubject
             .sink { [weak self] _ in
-                self?.dispatcher.dispatch(.searchCanceled)
+                self?.dispatcher.dispatch(.updateArticles([]))
             }.store(in: &cancellables)
     }
 }
@@ -72,15 +67,15 @@ extension ArticleSearchActionCreator {
         onAppearSubject.send()
     }
     
-    func searchBarSearchButtonClicked(text: String) {
-        searchTextSubject.send(text)
+    func onSearch(keyword: String) {
+        searchKeywordSubject.send(keyword)
     }
     
-    func searchBarCancelButtonClicked() {
+    func onSearchCancel() {
         searchCancelSubject.send()
     }
     
-    func didSelectSearchHistoryCell(history: ArticleSearchHistory) {
-        searchTextSubject.send(history.keyword)
+    func onSelectSearchHistoryCell(history: ArticleSearchHistory) {
+        searchKeywordSubject.send(history.keyword)
     }
 }

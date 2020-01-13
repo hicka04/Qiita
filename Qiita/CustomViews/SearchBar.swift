@@ -13,7 +13,30 @@ struct SearchBar: UIViewRepresentable {
     
     let placeholder: String
     @Binding var text: String
-    let eventHandler: (Event) -> Void
+    fileprivate let onEditingAction: (() -> Void)?
+    fileprivate let onSearchAction: ((String) -> Void)?
+    fileprivate let onCancelAction: (() -> Void)?
+    
+    init(placeholder: String,
+         text: Binding<String>) {
+        self.init(placeholder: placeholder,
+                  text: text,
+                  onEditingAction: nil,
+                  onSearchAction: nil,
+                  onCancelAction: nil)
+    }
+    
+    fileprivate init(placeholder: String,
+                     text: Binding<String>,
+                     onEditingAction: (() -> Void)?,
+                     onSearchAction: ((String) -> Void)?,
+                     onCancelAction: (() -> Void)?) {
+        self.placeholder = placeholder
+        _text = text
+        self.onEditingAction = onEditingAction
+        self.onSearchAction = onSearchAction
+        self.onCancelAction = onCancelAction
+    }
     
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
         let searchBar = UISearchBar()
@@ -32,7 +55,36 @@ struct SearchBar: UIViewRepresentable {
     
     func makeCoordinator() -> Coordinator {
         Coordinator(text: $text,
-                    eventHandler: eventHandler)
+                    onEditingAction: onEditingAction,
+                    onSearchAction: onSearchAction,
+                    onCancelAction: onCancelAction)
+    }
+}
+
+extension SearchBar {
+    
+    func onEditing(perform action: @escaping () -> Void) -> SearchBar {
+        SearchBar(placeholder: placeholder,
+                  text: $text,
+                  onEditingAction: action,
+                  onSearchAction: onSearchAction,
+                  onCancelAction: onCancelAction)
+    }
+    
+    func onSearch(perform action: @escaping (String) -> Void) -> SearchBar {
+        SearchBar(placeholder: placeholder,
+                  text: $text,
+                  onEditingAction: onEditingAction,
+                  onSearchAction: action,
+                  onCancelAction: onCancelAction)
+    }
+    
+    func onCancel(perform action: @escaping () -> Void) -> SearchBar {
+        SearchBar(placeholder: placeholder,
+                  text: $text,
+                  onEditingAction: onEditingAction,
+                  onSearchAction: onSearchAction,
+                  onCancelAction: action)
     }
 }
 
@@ -41,12 +93,18 @@ extension SearchBar {
     class Coordinator: NSObject, UISearchBarDelegate {
         
         @Binding var text: String
-        let eventHandler: (Event) -> Void
+        var onEditingAction: (() -> Void)?
+        var onSearchAction: ((String) -> Void)?
+        var onCancelAction: (() -> Void)?
         
         init(text: Binding<String>,
-             eventHandler: @escaping (Event) -> Void) {
+             onEditingAction: (() -> Void)?,
+             onSearchAction: ((String) -> Void)?,
+             onCancelAction: (() -> Void)?) {
             _text = text
-            self.eventHandler = eventHandler
+            self.onEditingAction = onEditingAction
+            self.onSearchAction = onSearchAction
+            self.onCancelAction = onCancelAction
         }
         
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -55,7 +113,7 @@ extension SearchBar {
         
         func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
             searchBar.setShowsCancelButton(true, animated: true)
-            eventHandler(.beginEditing)
+            onEditingAction?()
         }
         
         func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
@@ -64,23 +122,14 @@ extension SearchBar {
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             searchBar.endEditing(false)
-            eventHandler(.searchButtonClicked(text: text))
+            onSearchAction?(text)
         }
         
         func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
             text = ""
             searchBar.endEditing(false)
-            eventHandler(.cancelButtonClicked)
+            onCancelAction?()
         }
-    }
-}
-
-extension SearchBar {
-    
-    enum Event {
-        case beginEditing
-        case searchButtonClicked(text: String)
-        case cancelButtonClicked
     }
 }
 
@@ -88,9 +137,9 @@ extension SearchBar {
 struct SearchBar_Previews: PreviewProvider {
     
     static var previews: some View {
-        SearchBar(placeholder: "hoge",
-                  text: .constant("keyword"),
-                  eventHandler: { _ in })
+        SearchBar(placeholder: "placeholder",
+                  text: .constant("text"))
+            .previewLayout(.sizeThatFits)
     }
 }
 #endif
