@@ -13,7 +13,6 @@ struct ArticleSearchView: View {
     @ObservedObject private var store: ArticleSearchStore = .shared
     @State private var keyword = ""
     @State private var shownResultView = false
-    @State private var hiddenNavigationBar = false
     
     private let actionCreator = ArticleSearchActionCreator()
     
@@ -21,27 +20,22 @@ struct ArticleSearchView: View {
         NavigationView {
             VStack {
                 SearchBar(placeholder: "Enter search keywords", text: $keyword)
-                    .onEditing {
-                        self.hiddenNavigationBar = true
-                    }.onSearch { keyword in
+                    .onSearch { keyword in
                         self.shownResultView = true
                         self.actionCreator.onSearch(keyword: keyword)
                     }.onCancel {
                         self.shownResultView = false
-                        self.hiddenNavigationBar = false
                         self.actionCreator.onSearchCancel()
                     }
                 ZStack {
                     ArticleSearchHistoryView(keyword: $keyword,
-                                             shownResultView: $shownResultView,
-                                             hiddenNavigationBar: $hiddenNavigationBar)
+                                             shownResultView: $shownResultView)
                     if shownResultView {
                         ArticleSearchResultsView()
                     }
                 }
             }
             .navigationBarTitle("Search")
-            .navigationBarHidden(hiddenNavigationBar)
         }.onAppear {
             self.actionCreator.onAppear()
         }
@@ -54,7 +48,9 @@ private struct ArticleSearchResultsView: View {
     
     var body: some View {
         List(store.articles) { article in
-            Text(article.title)
+            NavigationLink(destination: Text(article.title)) {
+                Text(article.title)
+            }
         }.alert(isPresented: $store.shownSearchErrorAlert) {
             Alert(title: Text("Error"))
         }
@@ -66,7 +62,6 @@ private struct ArticleSearchHistoryView: View {
     @ObservedObject private var store: ArticleSearchStore = .shared
     @Binding var keyword: String
     @Binding var shownResultView: Bool
-    @Binding var hiddenNavigationBar: Bool
     
     private let actionCreator = ArticleSearchActionCreator()
     
@@ -79,7 +74,6 @@ private struct ArticleSearchHistoryView: View {
                 Button(action: {
                     self.keyword = history.keyword
                     self.shownResultView = true
-                    self.hiddenNavigationBar = true
                     self.actionCreator.onSelectSearchHistoryCell(history: history)
                 }) {
                     Text(history.keyword)
