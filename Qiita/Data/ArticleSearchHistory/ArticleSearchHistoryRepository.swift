@@ -30,23 +30,6 @@ extension ArticleSearchHistoryDataStore: ArticleSearchHistoryRepository {
     }
     
     func histories() -> [ArticleSearchHistory] {
-        UserDefaults.standard.array(forKey: key) ?? []
-    }
-}
-
-extension UserDefaults {
-    
-    func set<Element: Codable>(_ array: [Element], forKey key: String) {
-        let data = try? JSONEncoder().encode(array)
-        self.set(data, forKey: key)
-    }
-    
-    func array<Element: Codable>(forKey key: String) -> [Element]? {
-        guard let data = self.data(forKey: key),
-            let array = try? JSONDecoder().decode([Element].self, from: data) else {
-                return nil
-        }
-        return array
-        
+        UserDefaults.standard.codable(forKey: key) ?? []
     }
 }

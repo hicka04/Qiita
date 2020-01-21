@@ -15,7 +15,6 @@ final class ArticleSearchStore: ObservableObject {
     static let shared = ArticleSearchStore()
     
     @Published private(set) var histories: [ArticleSearchHistory] = []
-    @Published private(set) var articles: [Article] = []
     @Published var shownSearchErrorAlert = false
     
     var cancellables: Set<AnyCancellable> = []
@@ -27,8 +26,6 @@ final class ArticleSearchStore: ObservableObject {
             switch action {
             case .updateHistories(let histories):
                 self.histories = histories
-            case .updateArticles(let articles):
-                self.articles = articles
             case .catchError:
                 self.shownSearchErrorAlert = true
             }
