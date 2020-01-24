@@ -35,6 +35,7 @@
 		B8FCF6C623D99648005431E8 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B8FCF6C523D99648005431E8 /* Nuke */; };
 		B8FCF6C823D9D205005431E8 /* ArticleBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6C723D9D205005431E8 /* ArticleBodyView.swift */; };
 		B8FCF6CB23D9DA35005431E8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FCF6CA23D9DA35005431E8 /* WebKit.framework */; };
+		B8FCF6CD23DB27B5005431E8 /* UIFont+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6CC23DB27B5005431E8 /* UIFont+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		B8FCF6C223D99371005431E8 /* UIImageView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
 		B8FCF6C723D9D205005431E8 /* ArticleBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBodyView.swift; sourceTree = "<group>"; };
 		B8FCF6CA23D9DA35005431E8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		B8FCF6CC23DB27B5005431E8 /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 			children = (
 				B8FCF6B423D444E4005431E8 /* UserDefaults+extension.swift */,
 				B8FCF6C223D99371005431E8 /* UIImageView+extension.swift */,
+				B8FCF6CC23DB27B5005431E8 /* UIFont+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				B8997D6123D2787000923015 /* ArticleSearchResultActionCreator.swift in Sources */,
 				B8997D6523D2798800923015 /* ArticleSearchResultDispatcher.swift in Sources */,
 				B8766F9E23B23916008BCAE3 /* ArticleSearchAction.swift in Sources */,
+				B8FCF6CD23DB27B5005431E8 /* UIFont+extension.swift in Sources */,
 				B8FCF6C123D9276B005431E8 /* UserInfoView.swift in Sources */,
 				B8FCF6BD23D8801F005431E8 /* TitleLabel.swift in Sources */,
 				B8FCF6BF23D90E15005431E8 /* ScrollStackView.swift in Sources */,

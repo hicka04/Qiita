@@ -17,7 +17,7 @@ extension ArticleDetailViewController {
             self.text = text
             numberOfLines = 0
             lineBreakMode = .byWordWrapping
-            font = .preferredFont(forTextStyle: .largeTitle)
+            font = .preferredFont(for: .largeTitle, weight: .bold)
             adjustsFontForContentSizeCategory = true
         }
         
