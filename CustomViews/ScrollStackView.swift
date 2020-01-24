@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 
-final class ScrollStackView: UIScrollView {
+final public class ScrollStackView: UIScrollView {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: views)
@@ -19,7 +19,7 @@ final class ScrollStackView: UIScrollView {
         return stackView
     }()
     
-    var views: [UIView] = [] {
+    public var views: [UIView] = [] {
         didSet {
             views.forEach {
                 stackView.addArrangedSubview($0)
@@ -29,9 +29,9 @@ final class ScrollStackView: UIScrollView {
     private let axis: NSLayoutConstraint.Axis
     private let spacing: CGFloat
     
-    init(axis: NSLayoutConstraint.Axis,
-         spacing: CGFloat = 0,
-         padding: Padding = (0, 0, 0, 0)) {
+    public init(axis: NSLayoutConstraint.Axis,
+                spacing: CGFloat = 0,
+                padding: Padding = (0, 0, 0, 0)) {
         self.axis = axis
         self.spacing = spacing
         super.init(frame: .zero)
@@ -60,7 +60,7 @@ final class ScrollStackView: UIScrollView {
 
 extension ScrollStackView {
     
-    typealias Padding = (top: CGFloat, bottom: CGFloat, leading: CGFloat, trailing: CGFloat)
+    public typealias Padding = (top: CGFloat, bottom: CGFloat, leading: CGFloat, trailing: CGFloat)
 }
 
 #if DEBUG

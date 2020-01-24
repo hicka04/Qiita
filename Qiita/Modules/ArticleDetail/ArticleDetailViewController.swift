@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import CustomViews
 import QiitaAPIClient
 
 class ArticleDetailViewController: UIViewController {
