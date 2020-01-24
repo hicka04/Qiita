@@ -26,8 +26,15 @@
 		B8997D6323D278E500923015 /* ArticleSearchResultAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8997D6223D278E500923015 /* ArticleSearchResultAction.swift */; };
 		B8997D6523D2798800923015 /* ArticleSearchResultDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8997D6423D2798800923015 /* ArticleSearchResultDispatcher.swift */; };
 		B8997D6723D27A2000923015 /* ArticleSearchResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8997D6623D27A2000923015 /* ArticleSearchResultStore.swift */; };
-		B8E078F723B5A5530012A8F8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E078F623B5A5530012A8F8 /* SearchBar.swift */; };
 		B8FCF6B523D444E4005431E8 /* UserDefaults+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6B423D444E4005431E8 /* UserDefaults+extension.swift */; };
+		B8FCF6B823D8337B005431E8 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6B723D8337B005431E8 /* ArticleDetailViewController.swift */; };
+		B8FCF6BD23D8801F005431E8 /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6BC23D8801F005431E8 /* TitleLabel.swift */; };
+		B8FCF6BF23D90E15005431E8 /* ScrollStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6BE23D90E15005431E8 /* ScrollStackView.swift */; };
+		B8FCF6C123D9276B005431E8 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6C023D9276B005431E8 /* UserInfoView.swift */; };
+		B8FCF6C323D99371005431E8 /* UIImageView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6C223D99371005431E8 /* UIImageView+extension.swift */; };
+		B8FCF6C623D99648005431E8 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B8FCF6C523D99648005431E8 /* Nuke */; };
+		B8FCF6C823D9D205005431E8 /* ArticleBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FCF6C723D9D205005431E8 /* ArticleBodyView.swift */; };
+		B8FCF6CB23D9DA35005431E8 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FCF6CA23D9DA35005431E8 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +70,14 @@
 		B8997D6223D278E500923015 /* ArticleSearchResultAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchResultAction.swift; sourceTree = "<group>"; };
 		B8997D6423D2798800923015 /* ArticleSearchResultDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchResultDispatcher.swift; sourceTree = "<group>"; };
 		B8997D6623D27A2000923015 /* ArticleSearchResultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchResultStore.swift; sourceTree = "<group>"; };
-		B8E078F623B5A5530012A8F8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B8FCF6B423D444E4005431E8 /* UserDefaults+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extension.swift"; sourceTree = "<group>"; };
+		B8FCF6B723D8337B005431E8 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
+		B8FCF6BC23D8801F005431E8 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
+		B8FCF6BE23D90E15005431E8 /* ScrollStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollStackView.swift; sourceTree = "<group>"; };
+		B8FCF6C023D9276B005431E8 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		B8FCF6C223D99371005431E8 /* UIImageView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
+		B8FCF6C723D9D205005431E8 /* ArticleBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBodyView.swift; sourceTree = "<group>"; };
+		B8FCF6CA23D9DA35005431E8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +86,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8766F8D23B1F8C5008BCAE3 /* QiitaAPIClient in Frameworks */,
+				B8FCF6C623D99648005431E8 /* Nuke in Frameworks */,
+				B8FCF6CB23D9DA35005431E8 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +107,7 @@
 				B8149EC123A37FEA00EF5E58 /* Qiita */,
 				B8149ED823A37FEC00EF5E58 /* QiitaTests */,
 				B8149EC023A37FEA00EF5E58 /* Products */,
+				B8FCF6C923D9DA34005431E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +172,7 @@
 			children = (
 				B8766F9123B1FCA6008BCAE3 /* ArticleSearch */,
 				B8997D5D23D1F3AF00923015 /* ArticleSearchResult */,
+				B8FCF6B623D8335C005431E8 /* ArticleDetail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -207,7 +224,7 @@
 		B8E078F523B5A5380012A8F8 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				B8E078F623B5A5530012A8F8 /* SearchBar.swift */,
+				B8FCF6BE23D90E15005431E8 /* ScrollStackView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -216,8 +233,36 @@
 			isa = PBXGroup;
 			children = (
 				B8FCF6B423D444E4005431E8 /* UserDefaults+extension.swift */,
+				B8FCF6C223D99371005431E8 /* UIImageView+extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B8FCF6B623D8335C005431E8 /* ArticleDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B8FCF6BB23D87F0B005431E8 /* SubViews */,
+				B8FCF6B723D8337B005431E8 /* ArticleDetailViewController.swift */,
+			);
+			path = ArticleDetail;
+			sourceTree = "<group>";
+		};
+		B8FCF6BB23D87F0B005431E8 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				B8FCF6BC23D8801F005431E8 /* TitleLabel.swift */,
+				B8FCF6C023D9276B005431E8 /* UserInfoView.swift */,
+				B8FCF6C723D9D205005431E8 /* ArticleBodyView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		B8FCF6C923D9DA34005431E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B8FCF6CA23D9DA35005431E8 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +283,7 @@
 			name = Qiita;
 			packageProductDependencies = (
 				B8766F8C23B1F8C5008BCAE3 /* QiitaAPIClient */,
+				B8FCF6C523D99648005431E8 /* Nuke */,
 			);
 			productName = Qiita;
 			productReference = B8149EBF23A37FEA00EF5E58 /* Qiita.app */;
@@ -291,6 +337,7 @@
 			mainGroup = B8149EB623A37FEA00EF5E58;
 			packageReferences = (
 				B8766F8B23B1F8C5008BCAE3 /* XCRemoteSwiftPackageReference "QiitaAPIClient" */,
+				B8FCF6C423D99648005431E8 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = B8149EC023A37FEA00EF5E58 /* Products */;
 			projectDirPath = "";
@@ -328,20 +375,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8766FA023B23B71008BCAE3 /* ArticleSearchActionCreator.swift in Sources */,
+				B8FCF6C823D9D205005431E8 /* ArticleBodyView.swift in Sources */,
 				B84A751323B6364D00C60127 /* ArticleSearchHistoryRepository.swift in Sources */,
 				B84A751523B8535700C60127 /* ArticleSearchHistory.swift in Sources */,
 				B8149EC323A37FEA00EF5E58 /* AppDelegate.swift in Sources */,
+				B8FCF6B823D8337B005431E8 /* ArticleDetailViewController.swift in Sources */,
 				B8149EC523A37FEA00EF5E58 /* SceneDelegate.swift in Sources */,
 				B8766F9523B1FEC9008BCAE3 /* ArticleSearchStore.swift in Sources */,
 				B8FCF6B523D444E4005431E8 /* UserDefaults+extension.swift in Sources */,
 				B8997D6323D278E500923015 /* ArticleSearchResultAction.swift in Sources */,
 				B8766F9C23B238B8008BCAE3 /* ArticleSearchDispatcher.swift in Sources */,
-				B8E078F723B5A5530012A8F8 /* SearchBar.swift in Sources */,
 				B8997D6123D2787000923015 /* ArticleSearchResultActionCreator.swift in Sources */,
 				B8997D6523D2798800923015 /* ArticleSearchResultDispatcher.swift in Sources */,
 				B8766F9E23B23916008BCAE3 /* ArticleSearchAction.swift in Sources */,
+				B8FCF6C123D9276B005431E8 /* UserInfoView.swift in Sources */,
+				B8FCF6BD23D8801F005431E8 /* TitleLabel.swift in Sources */,
+				B8FCF6BF23D90E15005431E8 /* ScrollStackView.swift in Sources */,
 				B8766F9323B1FDA7008BCAE3 /* ArticleSearchViewController.swift in Sources */,
 				B8997D6723D27A2000923015 /* ArticleSearchResultStore.swift in Sources */,
+				B8FCF6C323D99371005431E8 /* UIImageView+extension.swift in Sources */,
 				B8997D5F23D1F3D000923015 /* ArticleSearchResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +667,14 @@
 				minimumVersion = 0.0.5;
 			};
 		};
+		B8FCF6C423D99648005431E8 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -622,6 +682,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B8766F8B23B1F8C5008BCAE3 /* XCRemoteSwiftPackageReference "QiitaAPIClient" */;
 			productName = QiitaAPIClient;
+		};
+		B8FCF6C523D99648005431E8 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8FCF6C423D99648005431E8 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

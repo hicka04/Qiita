@@ -11,6 +11,12 @@ import SwiftUI
 import Combine
 import QiitaAPIClient
 
+protocol ArticleSearchResultViewDelegate: AnyObject {
+    
+    func articleSearchResultView(_ view: ArticleSearchResultViewController,
+                                 didSelect article: Article)
+}
+
 final class ArticleSearchResultViewController: UITableViewController {
     
     private var store: ArticleSearchResultStore = .shared
@@ -37,6 +43,8 @@ final class ArticleSearchResultViewController: UITableViewController {
         }
     }
     private var cancellables: Set<AnyCancellable> = []
+    
+    weak var delegate: ArticleSearchResultViewDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +67,11 @@ extension ArticleSearchResultViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = articles[indexPath.row].title
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.articleSearchResultView(self, didSelect: articles[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

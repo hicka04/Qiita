@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import QiitaAPIClient
 
 final class ArticleSearchViewController: UITableViewController {
     
@@ -21,7 +22,11 @@ final class ArticleSearchViewController: UITableViewController {
     }
     private var cancellables: Set<AnyCancellable> = []
     
-    let searchResultViewController = ArticleSearchResultViewController()
+    lazy var searchResultViewController: ArticleSearchResultViewController = {
+        let searchResultViewController = ArticleSearchResultViewController()
+        searchResultViewController.delegate = self
+        return searchResultViewController
+    }()
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: searchResultViewController)
         searchController.searchBar.delegate = searchResultViewController
@@ -77,6 +82,14 @@ extension ArticleSearchViewController {
         searchController.searchBar.text = keyword
         searchResultViewController.searchBarSearchButtonClicked(searchController.searchBar)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ArticleSearchViewController: ArticleSearchResultViewDelegate {
+    
+    func articleSearchResultView(_ view: ArticleSearchResultViewController, didSelect article: Article) {
+        navigationController?.pushViewController(ArticleDetailViewController(article: article), animated: true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
 
