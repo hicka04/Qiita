@@ -49,7 +49,7 @@ final class ArticleSearchResultViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "ArticleSearchResultCell", bundle: nil), forCellReuseIdentifier: "cell")
         
         store.$articles
             .assign(to: \.articles, on: self)
@@ -64,8 +64,8 @@ extension ArticleSearchResultViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = articles[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ArticleSearchResultCell
+        cell.set(article: articles[indexPath.row])
         return cell
     }
     
