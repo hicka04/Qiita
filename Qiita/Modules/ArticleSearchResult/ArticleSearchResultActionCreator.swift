@@ -8,7 +8,6 @@
 
 import Foundation
 import Combine
-import QiitaAPIClient
 
 final class ArticleSearchResultActionCreator {
     
@@ -18,15 +17,15 @@ final class ArticleSearchResultActionCreator {
     
     private let dispatcher: ArticleSearchResultDispatcher = .shared
     
-    init(qiitaAPIClient: QiitaAPIRequestable = QiitaAPIClient(),
+    init(articleSearchRepository: ArticleSearchRepository = ArticleSearchDataStore(),
          articleSearchHistoryRepository: ArticleSearchHistoryRepository = ArticleSearchHistoryDataStore()) {
         onSearchSubject
             .map { [articleSearchHistoryRepository] keyword in
                 articleSearchHistoryRepository.save(keyword: keyword)
                 return keyword
-            }.flatMap { [qiitaAPIClient] keyword in
-                qiitaAPIClient
-                    .send(QiitaAPI.SearchArticles(query: keyword))
+            }.flatMap { [articleSearchRepository] keyword in
+                articleSearchRepository
+                    .search(keyword: keyword)
                     .receive(on: DispatchQueue.main)
                     .catch { [weak self] error -> Empty<[Article], Never> in
                         self?.dispatcher.dispatch(.catchError)

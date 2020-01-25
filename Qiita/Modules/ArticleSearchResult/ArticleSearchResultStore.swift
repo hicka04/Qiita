@@ -8,7 +8,6 @@
 
 import Foundation
 import Combine
-import QiitaAPIClient
 
 final class ArticleSearchResultStore: ObservableObject {
     

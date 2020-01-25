@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import QiitaAPIClient
 
 enum ArticleSearchAction {
     
     case updateHistories(_ histories: [ArticleSearchHistory])
-    case catchError(_ error: QiitaClientError)
 }

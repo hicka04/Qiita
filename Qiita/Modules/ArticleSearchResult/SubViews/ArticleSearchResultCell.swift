@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QiitaAPIClient
 
 class ArticleSearchResultCell: UITableViewCell {
     

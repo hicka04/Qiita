@@ -9,7 +9,6 @@
 import UIKit
 import SwiftUI
 import Combine
-import QiitaAPIClient
 
 protocol ArticleSearchResultViewDelegate: AnyObject {
     

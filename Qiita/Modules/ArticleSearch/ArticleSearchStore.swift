@@ -8,14 +8,12 @@
 
 import Foundation
 import Combine
-import QiitaAPIClient
 
 final class ArticleSearchStore: ObservableObject {
     
     static let shared = ArticleSearchStore()
     
     @Published private(set) var histories: [ArticleSearchHistory] = []
-    @Published var shownSearchErrorAlert = false
     
     var cancellables: Set<AnyCancellable> = []
     
@@ -26,8 +24,6 @@ final class ArticleSearchStore: ObservableObject {
             switch action {
             case .updateHistories(let histories):
                 self.histories = histories
-            case .catchError:
-                self.shownSearchErrorAlert = true
             }
         }
     }
