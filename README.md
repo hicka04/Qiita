@@ -1,1 +1,1 @@
-# Qiita
+# Quiita
