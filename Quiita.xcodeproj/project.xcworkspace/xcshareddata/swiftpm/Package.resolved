@@ -18,6 +18,15 @@
           "revision": "a33969fbaf6f8df06ce73b3f1d09fb9ca2aee934",
           "version": "0.0.6"
         }
+      },
+      {
+        "package": "ScrollStackView",
+        "repositoryURL": "https://github.com/hicka04/ScrollStackView.git",
+        "state": {
+          "branch": null,
+          "revision": "71c72be1e476d59492ca2fa94c23915e4b12993f",
+          "version": "0.0.1"
+        }
       }
     ]
   },

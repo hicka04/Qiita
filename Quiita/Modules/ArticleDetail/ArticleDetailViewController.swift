@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 import Combine
-import CustomViews
+import ScrollStackView
 
 class ArticleDetailViewController: UIViewController {
     
