@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Qiita
+@testable import Quiita
 
 class QiitaTests: XCTestCase {
 

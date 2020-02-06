@@ -1,0 +1,65 @@
+name: Quiita
+options:
+  bundleIdPrefix: com.hicka04
+  deploymentTarget:
+    iOS: 13.0
+targets:
+  Quiita:
+    type: application
+    platform: iOS
+    sources:
+      - Quiita
+    settings:
+      base:
+        DEVELOPMENT_TEAM: 8RYHZQ93KG
+        INFOPLIST_FILE: Quiita/Application/Info.plist
+        ENABLE_PREVIEWS: true
+        DEVELOPMENT_ASSET_PATHS: '"Quiita/Resources/Preview Content"'
+        ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: true
+    dependencies:
+      - package: QiitaAPIClient
+      - package: ScrollStackView
+      - package: Nuke
+  QuiitaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - QuiitaTests
+    settings:
+      base:
+        INFOPLIST_FILE: QuiitaTests/Info.plist
+    dependencies:
+      - target: Quiita
+packages:
+  QiitaAPIClient:
+    url: https://github.com/hicka04/QiitaAPIClient.git
+    majorVersion: 0.0.6
+  ScrollStackView:
+    url: https://github.com/hicka04/ScrollStackView.git
+    majorVersion: 0.0.1
+  Nuke:
+    url: https://github.com/kean/Nuke.git
+    majorVersion: 8.4.0
+schemes:
+  Quiita:
+    build:
+      targets:
+        Quiita: all
+        QuiitaTests: test
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      coverageTargets:
+        - Quiita
+      targets:
+        - name: QuiitaTests
+          parallelizable: true
+          randomExecutionOrder: true
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
