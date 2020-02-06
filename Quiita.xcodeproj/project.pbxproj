@@ -92,14 +92,11 @@
 		B8FCF6B423D444E4005431E8 /* UserDefaults+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extension.swift"; sourceTree = "<group>"; };
 		B8FCF6B723D8337B005431E8 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		B8FCF6BC23D8801F005431E8 /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
-		B8FCF6BE23D90E15005431E8 /* ScrollStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollStackView.swift; sourceTree = "<group>"; };
 		B8FCF6C023D9276B005431E8 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		B8FCF6C223D99371005431E8 /* UIImageView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
 		B8FCF6C723D9D205005431E8 /* ArticleBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBodyView.swift; sourceTree = "<group>"; };
 		B8FCF6CA23D9DA35005431E8 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		B8FCF6CC23DB27B5005431E8 /* UIFont+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+extension.swift"; sourceTree = "<group>"; };
-		B8FCF6D523DB28C0005431E8 /* CustomViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomViews.h; sourceTree = "<group>"; };
-		B8FCF6D623DB28C0005431E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8FCF6F523DB2CD3005431E8 /* ArticleSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchResultCell.swift; sourceTree = "<group>"; };
 		B8FCF6F623DB2CD3005431E8 /* ArticleSearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleSearchResultCell.xib; sourceTree = "<group>"; };
 		B8FCF6FE23DC32B4005431E8 /* ArticleSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSearchRepository.swift; sourceTree = "<group>"; };
@@ -134,7 +131,6 @@
 			children = (
 				B8149EC123A37FEA00EF5E58 /* Quiita */,
 				B8149ED823A37FEC00EF5E58 /* QuiitaTests */,
-				B8FCF6D423DB28C0005431E8 /* CustomViews */,
 				B8149EC023A37FEA00EF5E58 /* Products */,
 				B8FCF6C923D9DA34005431E8 /* Frameworks */,
 			);
@@ -286,16 +282,6 @@
 				B8FCF6CA23D9DA35005431E8 /* WebKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B8FCF6D423DB28C0005431E8 /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-				B8FCF6D523DB28C0005431E8 /* CustomViews.h */,
-				B8FCF6D623DB28C0005431E8 /* Info.plist */,
-				B8FCF6BE23D90E15005431E8 /* ScrollStackView.swift */,
-			);
-			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		B8FCF6F223DB2A3C005431E8 /* SubViews */ = {
